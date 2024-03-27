@@ -1,0 +1,4 @@
+ErrorDocument 404 https://lamp.computerstudi.es/~Rielly200521134/Comp-1006-php/Assignment-2/404.php
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule \.php$ https://lamp.computerstudi.es/~Rielly200521134/Comp-1006-php/Assignment-2/404.php [L]
