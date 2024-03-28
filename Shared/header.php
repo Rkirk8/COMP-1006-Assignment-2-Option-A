@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo$title; ?></title>
+    <title><?php echo isset($title) ? $title : 'Barrie RFC Coaches Portal'; ?></title>
     <link rel="stylesheet" href="./css/site.css" />
     <script src="./js/scripts.js" defer></script>
 </head>
@@ -13,7 +13,7 @@
         <nav class="navbar-container container">
         <h1>Barrie RFC Coaches Portal</h1>
         <!-- Global Nav-->
-        <ol id="pages">
+        <ul id="pages">
             <li>
                 <a href="index.php">Home</a>
             </li>
@@ -21,35 +21,23 @@
                 <a href="veiw-team.php">View Team</a>
             </li>
             <li>
-                <a href="decklist.php">This Week's Decklist</a>
+                <a href="deck-list.php">This Week's Decklist</a>
             <?php
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();
-            }
+              } 
+            //check if user is logged in
             if (!empty($_SESSION['username'])) {
-                echo '<li>
-                    <a href="add-player.php">Add New Players</a>
-                </li>';
-            }
-            if (!empty($_SESSION['username'])) {
-                //show username and logout link
-                echo '<li>
-                    <a class="navbar-link" href="#">' . $_SESSION['username'] . '</a>
-                </li>
-                <li>
-                    <a class="navbar-link" href="logout.php">Logout</a>
-                </li>';
+                echo '<li><a href="add-player.php">Add New Players</a></li>';
+                echo '<li><a href="#">' . $_SESSION['username'] . '</a></li>
+                <li><a href="logout.php">Logout</a></li>';
             } else {
                 //show login and register links
-                echo '<li>
-                    <a class="navbar-link" href="login.php">Login</a>
-                </li>
-                <li>
-                    <a class="navbar-link" href="register.php">Register</a>
-                </li>';
+                echo '<li><a href="login.php">Login</a></li>
+                <li><a href="register.php">Register</a></li>';
             }
             ?>
-        </ol>
+        </ul>
         </nav>
     </header>
     <main>

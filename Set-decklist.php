@@ -6,7 +6,7 @@ include('Shared/header.php');
 include('Shared/database.php');
 ?>
 <h2>Create This Weeks Starting Lineup</h2>
-    <form method="post" action="Conf-decklist.php">
+    <form method="post" action="conf-decklist.php">
         <fieldset>
             <label for="looseHead">Loose Head Prop</label>
             <select name="looseHead" id="looseHead" required>
@@ -37,6 +37,8 @@ include('Shared/database.php');
             <label for="tightHead">Tight Head Prop</label>
             <select name="tightHead" id="tightHead" required>
                 <?php
+                $sql = "SELECT playerName FROM players WHERE position = 'Prop'";
+                $result = $db->query($sql);
                 foreach ($result as $prop) {
                     echo '<option value="' . $prop['playerName'] . '">' . $prop['playerName'] . '</option>';
                 }
@@ -61,6 +63,8 @@ include('Shared/database.php');
             <select name="lock5" id="lock5" required>
                 <?php
                 // fetch only players with position "lock"
+                $sql = "SELECT playerName FROM players WHERE position = 'Lock'";
+                $result = $db->query($sql);
                 foreach ($result as $lock) {
                     echo '<option value="' . $lock['playerName'] . '">' . $lock['playerName'] . '</option>';
                 }
@@ -69,7 +73,7 @@ include('Shared/database.php');
         </fieldset>
         <fieldset>
             <label for="blindFlank">Blindside Flanker</label>
-            <select name="blindFlanker" id="blindFlanker" required>
+            <select name="blindFlank" id="blindFlank" required>
                 <?php
                 // fetch only players with position "Flanker"
                 $sql = "SELECT playerName FROM players WHERE position = 'Flanker'";
@@ -82,8 +86,10 @@ include('Shared/database.php');
         </fieldset>
         <fieldset>
             <label for="openFlank">Open-side Flanker</label>
-            <select name="OpenFlanker" id="OpenFlanker" required>
+            <select name="openFlank" id="openFlank" required>
                 <?php
+                $sql = "SELECT playerName FROM players WHERE position = 'Flanker'";
+                $result = $db->query($sql);
                 foreach ($result as $flank) {
                     echo '<option value="' . $flank['playerName'] . '">' . $flank['playerName'] . '</option>';
                 }
@@ -146,7 +152,18 @@ include('Shared/database.php');
             <label for="inCenter">Inside Centre</label>
             <select name="inCenter" id="inCenter" required>
                 <?php
-                // fetch only players with position "Center"
+                $sql = "SELECT playerName FROM players WHERE position = 'Center'";
+                $result = $db->query($sql);
+                foreach ($result as $wing) {
+                    echo '<option value="' . $wing['playerName'] . '">' . $wing['playerName'] . '</option>';
+                }
+                ?>
+            </select>
+        </fieldset>
+        <fieldset>
+            <label for="outCenter">Outside Centre</label>
+            <select name="outCenter" id="outCenter" required>
+                <?php
                 $sql = "SELECT playerName FROM players WHERE position = 'Center'";
                 $result = $db->query($sql);
                 foreach ($result as $cent) {
@@ -156,29 +173,11 @@ include('Shared/database.php');
             </select>
         </fieldset>
         <fieldset>
-            <label for="outCenter">Outside Centre</label>
-            <select name="outCenter" id="outCenter" required>
-                <?php
-                foreach ($result as $cent) {
-                    echo '<option value="' . $cent['playerName'] . '">' . $cent['playerName'] . '</option>';
-                }
-                ?>
-            </select>
-        </fieldset>
-        <fieldset>
-            <label for="inCenter">Inside Centre</label>
-            <select name="inCenter" id="inCenter" required>
-                <?php
-                foreach ($result as $wing) {
-                    echo '<option value="' . $wing['playerName'] . '">' . $wing['playerName'] . '</option>';
-                }
-                ?>
-            </select>
-        </fieldset>
-        <fieldset>
             <label for="openWing">Open-side Winger</label>
             <select name="openWing" id="openWing" required>
                 <?php
+                $sql = "SELECT playerName FROM players WHERE position = 'Winger'";
+                $result = $db->query($sql);
                 foreach ($result as $wing) {
                     echo '<option value="' . $wing['playerName'] . '">' . $wing['playerName'] . '</option>';
                 }
@@ -206,5 +205,6 @@ include('Shared/database.php');
             <p>Submit this weeks starting lineup</p>
         </fieldset>
     </form>
+    </main>
     </body>
 </html>

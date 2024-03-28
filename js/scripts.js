@@ -7,4 +7,13 @@ function confirmDelete() {
       // user clicked Cancel so stop execution
       return false;
     }
+}
+function checkPasswords() {
+  var password = document.getElementById("password").value;
+  var confirm = document.getElementById("confirm").value;
+  if (password !== confirm) {
+      alert("Passwords do not match");
+      return false;
   }
+  return true;
+}
