@@ -3,13 +3,19 @@ include('Shared/auth.php');
 $title = 'Edit Player';
 include('Shared/header.php'); 
 include('Shared/db.php');
-//get playerId
 
+//get playerId
 $playerID = $_GET['playerID'];
 
-//fatch player from db
+//init vars
+$photo = null;
+$playerName = null;
+$playerAge = null;
+$position = null;
+
+//fetch player from db
 try {
-    $sql = "SELECT * FROM players WHERE playerId = :playerID";
+    $sql = "SELECT * FROM players WHERE playerID = :playerID";
     $cmd = $db->prepare($sql);
     $cmd->bindParam(':playerID', $playerID, PDO::PARAM_INT);
     $cmd->execute();
@@ -18,16 +24,15 @@ try {
     $playerAge = $player['playerAge'];
     $position = $player['position'];
     $photo = $player['photo'];
-}
-catch (Exception $err) {
+} catch (Exception $err) {
     header('location:error.php');
     exit();
 }
-
 ?>
 <!-- edit player form -->
 <h2>Edit Player Details</h2>
 <form method="post" action="update-player.php" enctype="multipart/form-data">
+    
     <!-- player name -->
     <fieldset>
         <label for="playerName">Name:</label>
@@ -58,27 +63,26 @@ catch (Exception $err) {
         </select>
     </fieldset>
 
-<!-- player photo-->
+    <!-- player photo-->
     <fieldset>
         <label for="photo">Photo:</label>
-        <input type="file" name="newPhoto" id="newPhoto" accept="image/*"/>
+        <input type="file" name="photo" id="photo" accept="image/*"/>
         <!-- current player photo if there is one -->
         <input type="hidden" name="currentHeadshot" id="currentHeadshot" value="<?php echo $photo; ?>" />
         <?php 
         if ($photo != null) {
-            echo '<img src="image/headshots/' . $photo . '" alt="Player Photo" />';
-        } else {
-            echo '<img src="image/headshots/defaultHeadshot.png" alt="Default Player Photo" />';
+            echo '<h2>Current Photo</h2><br />
+            <img src="image/headshots/' . $photo . '" alt="Player Photo" />';
         }
         ?>
     </fieldset>
-<!--hidden input to link to update-player.php -->
-    <input type="hidden" name="playerId" id="playerId" value="<?php echo $playerId; ?>" />
+
+    <!-- hidden input to link to update-player.php -->
+    <input type="hidden" name="playerId" id="playerId" value="<?php echo $playerID; ?>" />
     <button>Update Player</button>
-    <?php
-    $db = null;
-    ?>
 </form>
-</main>
-</body>
-</html>
+
+<?php
+include('Shared/footer.php'); // Assuming you have a footer include
+$db = null;
+?>
