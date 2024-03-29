@@ -7,7 +7,7 @@ include('Shared/auth.php');
 ?>
 <h1>Add New player</h1>
 <!-- form for player name, age, position -->
-<form method="post" action="player-saved.php" enctype="multipart/form-data">
+<form method="post" action="player-saved.php" enctype="multipart/form-data" id="add-player-form">
     <fieldset>
         <label for="playerName">Name: </label>
         <input name="playerName" id="playerName" placeholder="First Last" required/>
@@ -33,12 +33,14 @@ include('Shared/auth.php');
     </fieldset>
     <fieldset>
         <label for="playerPhoto">Photo: </label>
-        <input type="file" name="playerPhoto" id="photo" accept="image/*"/>
+        <input type="file" name="playerPhoto" id="playerPhoto" accept="image/*"/>
     </fieldset>
     <!--submit button-->
     <fieldset>
-        <button type="submit">Add New Player</button>
+        <button type="submit" id="add-player-button">Add New Player</button>
     </fieldset>
 </form>
+</main>
 </body>
 </html>
+

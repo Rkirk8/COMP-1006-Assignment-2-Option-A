@@ -14,28 +14,29 @@ $data = $cmd->fetchAll();
 
 // Build the table
 echo '<h1>View Full Team</h1>';
-echo '<table>
+echo '<table id="view-team-table">
         <thead>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Position</th>
-            <th>Photo</th>';
+            <tr>
+                <th id="name-column-header">Name</th>
+                <th id="age-column-header">Age</th>
+                <th id="position-column-header">Position</th>
+                <th id="photo-column-header">Photo</th>';
 if (!empty($_SESSION['username'])) {
-    echo '<th>Actions</th>';
+    echo '<th id="actions-column-header">Actions</th>';
 }
-echo '</thead>';
+echo '</tr></thead>';
 
 // Loop through data
 foreach ($data as $row) {
     echo '<tr>
-            <td>' . $row['playerName'] . '</td>
-            <td>' . $row['playerAge'] . '</td>
-            <td>' . $row['position'] . '</td>
-            <td>'; 
+            <td id="name-cell">' . $row['playerName'] . '</td>
+            <td id="age-cell">' . $row['playerAge'] . '</td>
+            <td id="position-cell">' . $row['position'] . '</td>
+            <td id="photo-cell">'; 
     echo '<img src="image/headshots/' . $row['photo'] . '" class="thumbnail" />'; 
     echo '</td>'; 
     if (!empty($_SESSION['username'])) {
-        echo '<td class="actions">
+        echo '<td id="actions-cell" class="actions">
                 <a href="edit-player.php?playerID=' . $row['playerID'] . '">
                     Edit
                 </a>&nbsp;
@@ -57,6 +58,7 @@ $db = null;
 if (empty($_SESSION['username'])) { 
     echo '<button><a href="add-player.php">Add New Player</a></button>';
 }
-
-include('Shared/footer.php'); // Assuming you have a footer include
 ?>
+</main>
+</body>
+</html>

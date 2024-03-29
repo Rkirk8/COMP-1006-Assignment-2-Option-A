@@ -3,10 +3,10 @@ $title = 'Create Decklist';
 include('Shared/header.php');
 
 // Database connection
-include('Shared/database.php');
+include('Shared/db.php');
 ?>
 <h2>Create This Weeks Starting Lineup</h2>
-    <form method="post" action="conf-decklist.php">
+    <form method="post" action="conf-decklist.php" id ="decklist-form">
         <fieldset>
             <label for="looseHead">Loose Head Prop</label>
             <select name="looseHead" id="looseHead" required>

@@ -36,21 +36,23 @@ $cmd->execute();
 
 $data = $cmd->fetchAll();
 // build table
-echo '<h2>The Starting 15 for this Weekend are the following</h2>';
-echo '<table>
+echo '<h2 id="starting-lineup-header">The Starting 15 for this Weekend are the following</h2>';
+echo '<table id="starting-lineup-table">
         <thead>
-            <th>Position</th>
-            <th>Player</th>
-            <th>Photo</th>
+            <tr>
+                <th id="position-column-header">Position</th>
+                <th id="player-column-header">Player</th>
+                <th id="photo-column-header">Photo</th>
+            </tr>
         </thead>';
 // loop through data
 foreach ($data as $row) {
-    echo '<tr>
-        <td>' . $row['positionName'] . '</td>
-        <td>' . $row['playerName'] . '</td>';
+    echo '<tr id="starting-lineup-row">
+        <td id="position-cell">' . $row['positionName'] . '</td>
+        <td id="player-cell">' . $row['playerName'] . '</td>';
         
             if ($row['playerphoto'] != null) { 
-            echo '<td>' . '<img src="image/headshots/' . $row['playerphoto'] . '" />' . '</td>'; 
+            echo '<td id="photo-cell">' . '<img src="image/headshots/' . $row['playerphoto'] . '" />' . '</td>'; 
         } 
     echo '</tr>';
 }
@@ -62,5 +64,6 @@ if (!empty($_SESSION['username'])) {
         echo '<button><a href="Set-decklist.php">Set Your Decklist</a></button>';
     }
 ?>
+</main>
 </body>
 </html>

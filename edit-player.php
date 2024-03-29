@@ -81,8 +81,8 @@ try {
     <input type="hidden" name="playerId" id="playerId" value="<?php echo $playerID; ?>" />
     <button>Update Player</button>
 </form>
+<?php $db=null; ?>
+    </main>
+    </body>
+    </html>
 
-<?php
-include('Shared/footer.php'); // Assuming you have a footer include
-$db = null;
-?>

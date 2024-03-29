@@ -1,70 +1,227 @@
+/* Reset CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-family: Arial, sans-serif; /* Set your preferred font here */
+}
+
+/* Global styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #f0f0f0; /* Set your preferred background color */
+    color: #333; /* Set your preferred text color */
+    line-height: 1.6;
+    font-size: 16px; /* Set your preferred base font size */
 }
 
 .container {
-    margin: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #333; /* Set your preferred header background color */
+    color: #fff; /* Set your preferred header text color */
+    padding: 20px 0;
+    text-align: center;
+}
+
+#navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#brand {
+    font-size: 24px; /* Set your preferred brand font size */
+}
+
+#pages {
+    list-style: none;
+}
+
+#pages li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+#pages li a {
+    color: #fff; /* Set your preferred link color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#pages li a:hover {
+    color: #ffd700; /* Set your preferred link hover color */
+}
+
+main {
     padding: 20px;
 }
 
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
+/* Styles for specific pages */
+#error-404-header {
+    color: #f00; /* Set your preferred error message color */
 }
 
-form {
-    margin-bottom: 20px;
-}
-
-label {
+#add-player-form label {
+    display: block;
+    margin-bottom: 10px;
     font-weight: bold;
-    color: #555;
 }
 
-input[type="text"],
-input[type="number"],
-select {
+#add-player-form input[type="text"],
+#add-player-form input[type="number"],
+#add-player-form select {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-input[type="file"] {
-    margin-top: 5px;
-}
-
-fieldset {
-    border: none;
-}
-
-button[type="submit"] {
+#add-player-form button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #333; /* Set your preferred button background color */
+    color: #fff; /* Set your preferred button text color */
     border: none;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
-    background-color: #0056b3;
+#add-player-form button:hover {
+    background-color: #555; /* Set your preferred button hover background color */
 }
 
-.error-message {
-    color: red;
+#starting-lineup-header {
+    margin-bottom: 20px;
+}
+
+#starting-lineup-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#starting-lineup-table th, #starting-lineup-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#photo-cell img {
+    width: 100px; /* Set your preferred player photo width */
+    height: auto;
+}
+
+#edit-player-form label {
+    display: block;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
-.success-message {
-    color: green;
+#edit-player-form input[type="text"],
+#edit-player-form input[type="number"],
+#edit-player-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#edit-player-form button {
+    padding: 10px 20px;
+    background-color: #333; /* Set your preferred button background color */
+    color: #fff; /* Set your preferred button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#edit-player-form button:hover {
+    background-color: #555; /* Set your preferred button hover background color */
+}
+
+#decklist-form label {
+    display: block;
     margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#decklist-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#decklist-form button {
+    padding: 10px 20px;
+    background-color: #333; /* Set your preferred button background color */
+    color: #fff; /* Set your preferred button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#decklist-form button:hover {
+    background-color: #555; /* Set your preferred button hover background color */
+}
+
+#view-team-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#view-team-table th, #view-team-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#view-team-table img.thumbnail {
+    width: 50px; /* Set your preferred thumbnail width */
+    height: auto;
+}
+
+.actions a {
+    color: #333; /* Set your preferred action link color */
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.actions a:hover {
+    color: #555; /* Set your preferred action link hover color */
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header {
+        padding: 15px 0;
+    }
 }
