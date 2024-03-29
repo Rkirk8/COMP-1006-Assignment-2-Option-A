@@ -5,7 +5,7 @@ include('Shared/header.php');
 
 // Check if player is already in db
 // Connect to db
-include('Shared/database.php');
+include('Shared/db.php');
 
 // Extract player name from form data
 $playerName = $_POST['playerName'];
@@ -17,7 +17,7 @@ $stat->execute(array(':playerName' => $playerName));
 $data = $stat->fetch();
 
 // If player is in the db, show error
-if ($data) {
+if ($data ) {
     echo 'The player is already in the database';
 } else {
     // Check if file was uploaded
@@ -37,12 +37,12 @@ if ($data) {
             echo 'Photo must be a .jpg or .png';
             exit();
         } else {
-            move_uploaded_file($tmp_name, 'img/headshots/' . $finalName);
+            move_uploaded_file($tmp_name, 'image/headshots/' . $finalName);
         }
     } else {
-        $defaultPhoto = 'img/headshots/defaultHeadshot.png';
+        $defaultPhoto = 'image/headshots/defaultHeadshot.png';
         $finalName = session_id() . '-' . $defaultPhoto; 
-        copy($defaultPhoto, 'img/headshots/' . $finalName);
+        copy($defaultPhoto, 'imege/headshots/' . $finalName);
     }
 
     // Capture form inputs into vars

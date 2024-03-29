@@ -7,6 +7,7 @@ include('shared/header.php');
     Logged in users can add new players, edit or delete players. they can also edit the decklist.<br>
     All the code for this project is original but based of the in class lesions</p>
 <p>I started this project March 6th and took some small chips away at this assignment up intill monday March 26th then I went all in on finishing it. </p>
+<href="veiw-team.php">View Team</href>
 </main>
 </body>
 </html>

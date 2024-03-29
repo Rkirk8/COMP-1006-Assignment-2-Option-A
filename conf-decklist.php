@@ -26,35 +26,58 @@ if ($LooseHeadProp == $TightHeadProp || $Lock4 == $Lock5 || $blindFlanker == $op
     $ok = false;
 } else {
     $ok = true;
-    echo '<script>console.log("passValidation")</script>';
+    echo '<script>console.log("Valid");</script>';
 }
 
 if ($ok == true) {
     try {
         // connect to database
         include('Shared/db.php');
-
+        echo '<script>console.log("Connected");</script>';
         // save to database
+        /*original sql to create the table 
         $sql = "INSERT INTO decklist (playerName)
         VALUES
-        (':tightHead'), (':hooker'), (':looseHead'), (':lock4'), (':lock5'), (':blindFlank'), (':openFlank'), (':number8'), (':scrumHalf'), (':flyHalf'), (':blindWing'), (':inCenter'), (':outCenter'), (':openWing'), (':fullBack')"; 
+         (:tightHead), (:hooker), (:looseHead), (:lock4), (:lock5), (:blindFlank), (:openFlank), (:number8), (:scrumHalf), (:flyHalf), (:blindWing), (:inCenter), (:outCenter), (:openWing), (:fullBack)";*/
+         //new query to update table based off the positions
+         $sql = "UPDATE decklist
+         SET 
+             playerName = CASE position
+                 WHEN 'tightHead' THEN :tightHead
+                 WHEN 'hooker' THEN :hooker
+                 WHEN 'looseHead' THEN :looseHead
+                 WHEN 'lock4' THEN :lock4
+                 WHEN 'lock5' THEN :lock5
+                 WHEN 'blindFlank' THEN :blindFlank
+                 WHEN 'openFlank' THEN :openFlank
+                 WHEN 'number8' THEN :number8
+                 WHEN 'scrumHalf' THEN :scrumHalf
+                 WHEN 'flyHalf' THEN :flyHalf
+                 WHEN 'blindWing' THEN :blindWing
+                 WHEN 'inCenter' THEN :inCenter
+                 WHEN 'outCenter' THEN :outCenter
+                 WHEN 'openWing' THEN :openWing
+                 WHEN 'fullBack' THEN :fullBack
+                 ELSE playerName
+             END;
+         "; 
         $stmt = $db->prepare($sql);
         //map each input to a column in the decklist table
-        $stmt->bindValue(':looseHead', $LooseHeadProp, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':hooker', $Hooker, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':tightHead', $TightHeadProp, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':lock4', $Lock4, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':lock5', $Lock5, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':blindFlank', $blindFlanker, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':openFlank', $openFlanker, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':number8', $Num8, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':scrumHalf', $Scrummy, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':flyHalf', $Fly, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':blindWing', $bWing, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':inCenter', $inCent, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':outCenter', $outCent, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':openWing', $oWing, PDO::PARAM_STR, 100);
-        $stmt->bindValue(':fullBack', $fullB, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':looseHead', $LooseHeadProp, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':hooker', $Hooker, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':tightHead', $TightHeadProp, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':lock4', $Lock4, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':lock5', $Lock5, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':blindFlank', $blindFlanker, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':openFlank', $openFlanker, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':number8', $Num8, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':scrumHalf', $Scrummy, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':flyHalf', $Fly, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':blindWing', $bWing, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':inCenter', $inCent, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':outCenter', $outCent, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':openWing', $oWing, PDO::PARAM_STR, 100);
+        $stmt->bindParam(':fullBack', $fullB, PDO::PARAM_STR, 100);
         //execute
         $stmt->execute();
         //disconnect
@@ -64,7 +87,8 @@ if ($ok == true) {
         GoodLuck!';
     } catch (Exception $err) {
         header('location:error.php');
-        exit();
+        $db = null;
+        echo 'Error: ' . $err;
     }
 }
 ?>

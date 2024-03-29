@@ -3,12 +3,11 @@
 $title = 'View Team';
 include('Shared/header.php');
 //dynamic table populated from db
-        include ('Shared/database.php');
+        include ('Shared/db.php');
         //get data from players and positions and group all by positionID with INNER JOIN and ORDER BY
-        $sql = "SELECT players.playerName, players.playerAge, players.position, positions.jerseyNum, positions.positionID 
-        FROM players
-        INNER JOIN positions ON players.position = positions.positionName
-        ORDER BY positionID;";
+
+        $sql = "SELECT * FROM players
+        ORDER BY playerName;";
         $cmd = $db->prepare($sql);
         $cmd->execute();
         $data = $cmd->fetchAll();
@@ -30,24 +29,23 @@ include('Shared/header.php');
             <td>' . $row['playerName'] . '</td>
             <td>' . $row['playerAge'] . '</td>
             <td>' . $row['position'] . '</td>
-            <td>';
-                if ($row['photo'] != null) { 
-                echo '<img src="img/uploads/' . $row['photo'] . '" class="thumbnail" />'; 
-            } 
+            <td>'; 
+            echo '<img src="image/headshots/' . $row['photo'] . '" class="thumbnail" />'; 
             echo '</td>'; 
-            echo '</tr>';
             if (!empty($_SESSION['username'])) {
                 echo '<td class="actions">
-                    <a href="edit-player.php?playerId=' .$row['playerId'] . '">
+                    <a href="edit-player.php?playerID =' . $row['playerID'] . '">
                         Edit
                     </a>&nbsp;
-                    <a href="delete-player.php?playerId=' .$row['playerId'] . '" onclick="return confirmDelete();">
+                    <a href="delete-player.php?playerID=' .$row['playerID'] . '" onclick="return confirmDelete();">
                         Delete
                     </a>
                 </td>
                 </tr>';
+            } else {
+                echo'</tr>';
             }
-        }
+        } 
         echo '</table>';
         // close connection
         $db = null;
