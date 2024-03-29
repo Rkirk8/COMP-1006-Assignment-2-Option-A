@@ -27,3 +27,4 @@ This web application is a Coach Portal for the Barrie RFC (Rugby Football Club),
 7. **Responsive Design**: The use of `meta` tags in the HTML suggests that the application is designed to be responsive, ensuring proper display on various devices.
 
 Overall, this web application serves as a comprehensive tool for rugby coaches to manage their team effectively, covering essential functionalities from player management to setting up the starting lineup for games.
+https://lamp.computerstudi.es/~Rielly200521134/Comp-1006-php/Assignment-2/
